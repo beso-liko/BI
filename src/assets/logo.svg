@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" fill="none" role="img" aria-label="BI Holding Group">
+  <!--
+    BI Holding Group — horizontal wordmark
+    Mark occupies x 0–50 (50 px), wordmark starts at x 62.
+    All mark elements on integer grid within 50×48 viewBox coordinates.
+  -->
+
+  <!-- ── B mark (white) ── -->
+  <rect x="4"  y="4"  width="6"  height="40" fill="#F5F5F5"/>
+  <rect x="4"  y="4"  width="26" height="6"  fill="#F5F5F5"/>
+  <rect x="4"  y="20" width="26" height="6"  fill="#F5F5F5"/>
+  <rect x="4"  y="38" width="26" height="6"  fill="#F5F5F5"/>
+  <rect x="24" y="10" width="6"  height="10" fill="#F5F5F5"/>
+  <rect x="24" y="26" width="6"  height="12" fill="#F5F5F5"/>
+
+  <!-- ── I mark (red) ── -->
+  <rect x="36" y="4"  width="8"  height="40" fill="#D71920"/>
+  <rect x="34" y="4"  width="12" height="6"  fill="#D71920"/>
+  <rect x="34" y="38" width="12" height="6"  fill="#D71920"/>
+
+  <!-- ── Wordmark ── -->
+  <text
+    x="62" y="29"
+    font-family="'Barlow Condensed', 'Arial Narrow', sans-serif"
+    font-weight="700"
+    font-size="20"
+    fill="#F5F5F5"
+    letter-spacing="2.5"
+  >BI HOLDING</text>
+  <text
+    x="62" y="43"
+    font-family="'Barlow Condensed', 'Arial Narrow', sans-serif"
+    font-weight="500"
+    font-size="11"
+    fill="#888888"
+    letter-spacing="4"
+  >GROUP</text>
+</svg>

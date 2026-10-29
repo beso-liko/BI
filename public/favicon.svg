@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- B spine -->
+  <rect x="4" y="4" width="6" height="40" fill="#F5F5F5"/>
+  <!-- B top bar -->
+  <rect x="4" y="4" width="24" height="6" fill="#F5F5F5"/>
+  <!-- B mid bar -->
+  <rect x="4" y="21" width="24" height="6" fill="#F5F5F5"/>
+  <!-- B bot bar -->
+  <rect x="4" y="38" width="24" height="6" fill="#F5F5F5"/>
+  <!-- B top right -->
+  <rect x="22" y="4" width="6" height="23" fill="#F5F5F5"/>
+  <!-- B bot right -->
+  <rect x="22" y="21" width="6" height="23" fill="#F5F5F5"/>
+  <!-- I vertical -->
+  <rect x="34" y="4" width="6" height="40" fill="#D71920"/>
+  <!-- I top -->
+  <rect x="28" y="4" width="16" height="6" fill="#D71920"/>
+  <!-- I bot -->
+  <rect x="28" y="38" width="16" height="6" fill="#D71920"/>
+</svg>
