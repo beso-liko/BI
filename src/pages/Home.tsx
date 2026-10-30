@@ -6,24 +6,29 @@ import Philosophy from '../components/sections/Philosophy';
 import WhyBI from '../components/sections/WhyBI';
 import ContactBanner from '../components/sections/ContactBanner';
 
-/* Full-bleed typographic frieze — sector names at editorial scale */
+const SECTORS = ['Real Estate', 'Information Technology', 'Consulting', 'Distribution', 'Strategic Investments'];
+
+/* Full-bleed outlined ticker — two identical copies make the -50% loop seamless */
 const SectorFrieze: React.FC = () => (
   <div
-    className="bg-bi-black border-t border-b border-bi-border overflow-hidden py-7"
+    className="bg-bi-black border-y border-bi-border overflow-hidden py-6 md:py-8 select-none"
     aria-hidden="true"
   >
-    <p
-      className="font-display font-extrabold uppercase whitespace-nowrap select-none"
-      style={{
-        fontSize: 'clamp(2.8rem, 6.5vw, 5.5rem)',
-        lineHeight: 1,
-        color: 'rgba(255,255,255,0.06)',
-        letterSpacing: '-0.01em',
-        paddingInline: '4rem',
-      }}
-    >
-      Real&nbsp;Estate&emsp;·&emsp;Information&nbsp;Technology&emsp;·&emsp;Consulting&emsp;·&emsp;Distribution&emsp;·&emsp;Strategic&nbsp;Investments
-    </p>
+    <div className="flex w-max animate-marquee">
+      {[0, 1].map((copy) => (
+        <ul key={copy} className="flex shrink-0 items-center">
+          {SECTORS.map((sector) => (
+            <li
+              key={sector}
+              className="flex items-center whitespace-nowrap font-display font-extrabold uppercase leading-none tracking-[-0.01em] text-[clamp(2.25rem,6.5vw,5.5rem)] text-transparent [-webkit-text-stroke:1px_rgba(245,245,245,0.35)]"
+            >
+              {sector}
+              <span className="mx-8 md:mx-12 block size-2 md:size-3 rotate-45 bg-bi-red" />
+            </li>
+          ))}
+        </ul>
+      ))}
+    </div>
   </div>
 );
 

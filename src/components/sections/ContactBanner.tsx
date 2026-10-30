@@ -72,10 +72,6 @@ const ContactBanner: React.FC = () => {
                 <span className="group-hover:underline">enquiries@biholdinggroup.com</span>
               </a>
             </div>
-
-            <p className="mt-4 text-bi-muted text-xs">
-              * Email delivery requires a backend or form service configuration. See setup notes.
-            </p>
           </div>
 
           {/* Typographic brand accent */}

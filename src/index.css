@@ -36,6 +36,7 @@
   --animate-fade-in:   fadeIn 0.6s ease forwards;
   --animate-line-grow: lineGrow 0.8s cubic-bezier(0.19, 1, 0.22, 1) forwards;
   --animate-bounce:    bounce 1s infinite;
+  --animate-marquee:   marquee 45s linear infinite;
 
   @keyframes fadeUp {
     0%   { opacity: 0; transform: translateY(24px); }
@@ -48,6 +49,9 @@
   @keyframes lineGrow {
     0%   { transform: scaleX(0); transform-origin: left; }
     100% { transform: scaleX(1); transform-origin: left; }
+  }
+  @keyframes marquee {
+    to { transform: translateX(-50%); }
   }
   @keyframes bounce {
     0%, 100% { transform: translateY(0); animation-timing-function: cubic-bezier(0.8, 0, 1, 1); }
@@ -126,64 +130,118 @@ body {
   color: var(--color-bi-muted-lt);
 }
 
+
+/* ──────────────────────────────────────────────
+   BUTTONS — one motion language for every button:
+   a panel sweeps in from the left (out the right on leave),
+   text/border recolour, and the icon loops through.
+   Each variant only sets its colours.
+────────────────────────────────────────────── */
+.btn-primary,
+.btn-outline,
+.btn-outline-red,
+.btn-sweep {
+  --btn-bg: transparent;
+  --btn-fg: white;
+  --btn-border: transparent;
+  --btn-panel: white;
+  --btn-hover-fg: var(--color-bi-black);
+  --btn-hover-border: var(--btn-border);
+
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 2.75rem;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid var(--btn-border);
+  background-color: var(--btn-bg);
+  color: var(--btn-fg);
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.8125rem;
+  letter-spacing: 0.05em;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    color 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+    border-color 0.35s cubic-bezier(0.19, 1, 0.22, 1),
+    transform 0.15s ease;
+}
+.btn-primary::before,
+.btn-outline::before,
+.btn-outline-red::before,
+.btn-sweep::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--btn-panel);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+:is(.btn-primary, .btn-outline, .btn-outline-red, .btn-sweep):is(:hover, :focus-visible) {
+  color: var(--btn-hover-fg);
+  border-color: var(--btn-hover-border);
+}
+:is(.btn-primary, .btn-outline, .btn-outline-red, .btn-sweep):is(:hover, :focus-visible)::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+:is(.btn-primary, .btn-outline, .btn-outline-red, .btn-sweep):is(:hover, :focus-visible) svg {
+  animation: iconLoop 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+}
+:is(.btn-primary, .btn-outline, .btn-outline-red, .btn-sweep):active {
+  transform: scale(0.97);
+}
+
+/* Solid red → black with red outline and red text */
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  background-color: var(--color-bi-red);
-  color: white;
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.8125rem;
-  letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  transition: background-color 0.3s;
-  cursor: pointer;
-  border: none;
-  text-decoration: none;
-}
-.btn-primary:hover {
-  background-color: var(--color-bi-red-dark);
+  --btn-bg: var(--color-bi-red);
+  --btn-border: var(--color-bi-red);
+  --btn-panel: var(--color-bi-black);
+  --btn-hover-fg: var(--color-bi-red);
 }
 
+/* Ghost white → solid white with black text */
 .btn-outline {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid rgba(245, 245, 245, 0.3);
-  color: var(--color-bi-white);
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.8125rem;
-  letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  transition: border-color 0.3s, background-color 0.3s;
-  cursor: pointer;
-  background: transparent;
-  text-decoration: none;
-}
-.btn-outline:hover {
-  border-color: var(--color-bi-white);
-  background-color: rgba(245, 245, 245, 0.05);
+  --btn-fg: var(--color-bi-white);
+  --btn-border: rgba(245, 245, 245, 0.3);
+  --btn-panel: var(--color-bi-white);
+  --btn-hover-fg: var(--color-bi-black);
+  --btn-hover-border: var(--color-bi-white);
 }
 
+/* Red outline → solid red with white text */
 .btn-outline-red {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  border: 1px solid var(--color-bi-red);
-  color: var(--color-bi-red);
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 0.8125rem;
-  letter-spacing: 0.05em;
-  padding: 0.75rem 1.5rem;
-  transition: background-color 0.3s, color 0.3s;
-  cursor: pointer;
-  background: transparent;
-  text-decoration: none;
+  --btn-fg: var(--color-bi-red);
+  --btn-border: var(--color-bi-red);
+  --btn-panel: var(--color-bi-red);
+  --btn-hover-fg: white;
 }
-.btn-outline-red:hover {
-  background-color: var(--color-bi-red);
-  color: white;
+
+/* White, for red backgrounds → black with white text */
+.btn-sweep {
+  --btn-bg: white;
+  --btn-fg: var(--color-bi-red);
+  --btn-border: white;
+  --btn-panel: var(--color-bi-black);
+  --btn-hover-fg: white;
+  --btn-hover-border: var(--color-bi-black);
+  font-weight: 600;
+  font-size: 0.875rem;
+  padding: 0.75rem 1.75rem;
+}
+.btn-sweep:focus-visible {
+  outline-color: white;
+}
+
+@keyframes iconLoop {
+  0%   { transform: translateX(0);    opacity: 1; }
+  35%  { transform: translateX(10px); opacity: 0; }
+  36%  { transform: translateX(-10px); opacity: 0; }
+  100% { transform: translateX(0);    opacity: 1; }
 }

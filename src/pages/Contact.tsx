@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { Mail, AlertCircle } from 'lucide-react';
+import { Mail } from 'lucide-react';
 import SectionLabel from '../components/ui/SectionLabel';
 import { useInView } from '../hooks/useInView';
 
@@ -148,17 +148,6 @@ const Contact: React.FC = () => {
                   </div>
                 </div>
               </div>
-
-              {/* Backend note */}
-              <div className="mt-10 p-5 border border-bi-border bg-bi-dark/50 flex items-start gap-3">
-                <AlertCircle size={16} className="text-bi-muted flex-shrink-0 mt-0.5" aria-hidden="true" />
-                <p className="text-bi-muted text-[12px] leading-relaxed">
-                  <strong className="text-bi-muted-lt">Note:</strong> This form does not yet have
-                  a configured backend. To enable email delivery, connect a service such as
-                  Formspree, EmailJS, or a custom API endpoint.
-                </p>
-              </div>
-
               {/* Areas */}
               <div className="mt-10">
                 <p className="text-[11px] tracking-[0.2em] uppercase text-bi-muted mb-4">Areas of Interest</p>

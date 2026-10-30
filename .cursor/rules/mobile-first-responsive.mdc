@@ -1,0 +1,35 @@
+---
+description: Enforce mobile-first, responsive design for every new feature and UI change
+alwaysApply: true
+---
+
+# Mobile-First Responsive Design
+
+Every new feature, section, page, or component must be designed for mobile first, then enhanced for larger screens.
+
+## Rules
+
+- Unprefixed Tailwind classes target the smallest screen (~320px). Add `xs:` (480px), `sm:`, `md:`, `lg:`, `xl:` only to scale *up*.
+- Never write desktop styles first and undo them with smaller breakpoints. Do not use `max-*:` variants unless there is no alternative.
+- Layouts start as a single column (`flex-col` / `grid-cols-1`) and gain columns at larger breakpoints.
+- No fixed pixel widths on containers. Use `w-full`, `max-w-*`, and fluid padding (`px-5 md:px-10`).
+- No horizontal overflow at 320px. Long words/URLs need `break-words`; wide content needs `overflow-x-auto`.
+- Tap targets are at least 44×44px (`min-h-11 min-w-11`) with adequate spacing.
+- Use the fluid `text-display-*` sizes for headings; body text is never below `text-sm`.
+- Hover-only interactions must have a tap/focus equivalent. Navigation must work on mobile (menu toggle).
+- Images use `w-full h-auto` or `object-cover` with an aspect ratio, and `loading="lazy"` below the fold.
+- Prefer `min-h-svh` over `h-screen` for full-height mobile sections.
+
+## Example
+
+```tsx
+// ❌ BAD: desktop-first, fixed width, overflows on phones
+<div className="grid grid-cols-3 gap-12 w-[1200px] max-md:grid-cols-1">
+
+// ✅ GOOD: mobile-first, fluid, scales up
+<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12 w-full max-w-7xl mx-auto px-5 md:px-10">
+```
+
+## Before Finishing a Feature
+
+Check the layout at 320px, 375px, 768px, 1024px, and 1440px. Confirm there is no horizontal scroll, text is readable, and every interactive element is reachable by touch.

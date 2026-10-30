@@ -202,7 +202,7 @@ const About: React.FC = () => {
           </div>
           <Link
             to="/contact"
-            className="flex-shrink-0 inline-flex items-center gap-2 bg-white text-bi-red font-body font-semibold text-sm px-7 py-3 hover:bg-bi-white/90 transition-colors duration-200"
+            className="btn-sweep flex-shrink-0"
           >
             Get in Touch
             <ArrowRight size={16} aria-hidden="true" />
