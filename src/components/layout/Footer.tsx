@@ -10,11 +10,12 @@ const footerLinks = [
   { label: 'Contact',    to: '/contact'     },
 ];
 
+// ids match the section anchors on the Businesses page
 const sectors = [
-  'Real Estate',
-  'Information Technology',
-  'Consulting & Business Services',
-  'Distribution & Trade',
+  { label: 'Real Estate',                    id: 'real-estate'            },
+  { label: 'Information Technology',         id: 'information-technology' },
+  { label: 'Consulting & Business Services', id: 'consulting'             },
+  { label: 'Distribution & Trade',           id: 'distribution'           },
 ];
 
 const Footer: React.FC = () => {
@@ -66,12 +67,12 @@ const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-3" role="list">
               {sectors.map((sector) => (
-                <li key={sector}>
+                <li key={sector.id}>
                   <Link
-                    to="/businesses"
+                    to={`/businesses#${sector.id}`}
                     className="font-body text-sm text-bi-muted-lt hover:text-bi-white transition-colors duration-200"
                   >
-                    {sector}
+                    {sector.label}
                   </Link>
                 </li>
               ))}

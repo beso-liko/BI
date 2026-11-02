@@ -165,7 +165,7 @@ const SectorPanel: React.FC<SectorPanelProps> = ({
               {sector.description}
             </p>
             <Link
-              to="/businesses"
+              to={`/businesses#${sector.id}`}
               className="inline-flex items-center gap-2 font-body text-sm font-medium text-bi-red hover:text-bi-white transition-colors duration-200 group/link"
             >
               Learn More

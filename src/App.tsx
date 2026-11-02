@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './components/layout/Navigation';
 import Footer from './components/layout/Footer';
@@ -7,12 +7,23 @@ import About from './pages/About';
 import Businesses from './pages/Businesses';
 import Contact from './pages/Contact';
 
-// Scroll to top on route change
+// Scroll to the #hash section if there is one, otherwise to the top on route change
 const ScrollToTop: React.FC = () => {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
+  const prevPathname = useRef(pathname);
+
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
-  }, [pathname]);
+    const samePage = prevPathname.current === pathname;
+    prevPathname.current = pathname;
+
+    const target = hash ? document.getElementById(decodeURIComponent(hash.slice(1))) : null;
+    if (target) {
+      target.scrollIntoView({ behavior: samePage ? 'smooth' : 'instant', block: 'start' });
+    } else if (!samePage) {
+      window.scrollTo({ top: 0, behavior: 'instant' });
+    }
+  }, [pathname, hash]);
+
   return null;
 };
 

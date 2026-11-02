@@ -76,7 +76,8 @@ const SectorBlock: React.FC<{ sector: typeof sectors[0]; reverse?: boolean }> = 
   return (
     <div
       ref={ref}
-      className="py-20 lg:py-28 border-b border-bi-border last:border-0"
+      id={sector.id}
+      className="py-20 lg:py-28 border-b border-bi-border last:border-0 scroll-mt-18"
     >
       <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center ${reverse ? 'lg:flex-row-reverse' : ''}`}>
         {/* Image */}
